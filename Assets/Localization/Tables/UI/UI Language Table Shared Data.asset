@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Language Table Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: UI Language Table
+  m_TableCollectionNameGuidString: a31c0d2977ad7184bbcf72d4a5440587
+  m_Entries:
+  - m_Id: 8957435904
+    m_Key: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 185697017856
+    m_Key: GraphicsPresets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 468703485952
+    m_Key: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 543311765504
+    m_Key: Main Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 584516608000
+    m_Key: Audio UI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 598290702336
+    m_Key: Game FX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 603206426624
+    m_Key: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1174541934592
+    m_Key: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1212454248448
+    m_Key: Personalize
+    m_Metadata:
+      m_Items: []
+  - m_Id: 58293676908544
+    m_Key: Chose Your Buff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62327091601408
+    m_Key: Interact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85192985780224
+    m_Key: Zombies Are Coming
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92202577928192
+    m_Key: Paused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 318616069709824
+    m_Key: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 318769627373568
+    m_Key: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 318903572471808
+    m_Key: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 319066386964480
+    m_Key: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 808634789896192
+    m_Key: FPS Limit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1040503724810240
+    m_Key: Special Event
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35632660900261888
+    m_Key: Tap To Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59056337453555712
+    m_Key: You must select 3 weapons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59060818807332864
+    m_Key: Select a weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59064213186256896
+    m_Key: Max Weapon Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59064633233219584
+    m_Key: Upgrade Weapon Failed
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 6506569063864991746
+  references:
+    version: 2
+    RefIds:
+    - rid: 6506569063864991746
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1738660994369
