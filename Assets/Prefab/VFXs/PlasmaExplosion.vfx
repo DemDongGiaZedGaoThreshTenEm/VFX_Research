@@ -194,9 +194,9 @@ MonoBehaviour:
   uiBounds:
     serializedVersion: 2
     x: 1178
-    y: -1290
+    y: -1291
     width: 5334
-    height: 3772
+    height: 3773
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -302,8 +302,8 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Smoke Duration
-    path: Smoke Duration
+  - name: SmokeDuration
+    path: SmokeDuration
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -3240,7 +3240,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614763}
-  m_ExposedName: Smoke Duration
+  m_ExposedName: SmokeDuration
   m_Exposed: 1
   m_Order: 2
   m_Category: 

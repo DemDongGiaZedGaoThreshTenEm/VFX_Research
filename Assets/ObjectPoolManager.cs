@@ -1,0 +1,124 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.VFX;
+
+public class ObjectPoolManager : MonoBehaviour
+{
+    public static ObjectPoolManager Instance;
+
+    [System.Serializable]
+    public class Pool
+    {
+        public string poolName;
+        public GameObject prefab;
+        public int size;
+    }
+
+    [SerializeField] private List<Pool> pools;
+
+    private Dictionary<string, Queue<GameObject>> poolDictionary;
+    /// <summary>
+    /// Danh sách tất cả Effect hỗ trợ thay đổi Quality.
+    /// Được tạo một lần khi khởi tạo Pool.
+    /// </summary>
+    private readonly HashSet<IQualityScalable> qualityControllers =
+        new HashSet<IQualityScalable>();    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+
+        foreach (Pool pool in pools)
+        {
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+            for (int i = 0; i < pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.prefab, transform);
+
+                obj.SetActive(false);
+
+                objectPool.Enqueue(obj);
+
+                bool hasParticle =
+                    obj.GetComponentInChildren<ParticleSystem>(true) != null;
+
+                bool hasVFX =
+                    obj.GetComponentInChildren<VisualEffect>(true) != null;
+
+                if (hasParticle || hasVFX)
+                {
+                    EffectQualityController controller =
+                        obj.GetComponent<EffectQualityController>();
+
+                    if (controller == null)
+                    {
+                        controller = obj.AddComponent<EffectQualityController>();
+                        controller.Initialize();
+                    }
+
+                    qualityControllers.Add(controller);
+                }
+            }
+
+            poolDictionary.Add(pool.poolName, objectPool);
+
+            Debug.Log($"Pool [{pool.poolName}] created with {pool.size} objects.");
+        }    
+    }
+
+    public GameObject SpawnFromPool(
+        string poolName,
+        Vector3 position,
+        Quaternion rotation)
+    {
+        if (!poolDictionary.ContainsKey(poolName))
+        {
+            Debug.LogWarning($"Pool {poolName} không tồn tại!");
+            return null;
+        }
+
+        GameObject objectToSpawn =
+            poolDictionary[poolName].Dequeue();
+
+        objectToSpawn.transform.position = position;
+        objectToSpawn.transform.rotation = rotation;
+
+        objectToSpawn.SetActive(false);
+        objectToSpawn.SetActive(true);
+
+        poolDictionary[poolName].Enqueue(objectToSpawn);
+
+        return objectToSpawn;
+    }
+
+
+    /// Áp dụng Quality cho toàn bộ Effect trong Pool.
+    /// Được QualityManager gọi.
+    /// </summary>
+    public void ApplyQuality(QualityLevel level)
+    {
+        int updated = 0;
+
+        foreach (IQualityScalable controller in qualityControllers)
+        {
+            if (controller == null)
+                continue;
+
+            controller.ApplyQuality(level);
+            updated++;
+        }
+
+        Debug.Log(
+            $"[ObjectPoolManager] Applied {level} quality to {updated} controllers.");
+    }
+}

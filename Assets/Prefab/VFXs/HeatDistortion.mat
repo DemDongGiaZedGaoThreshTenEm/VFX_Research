@@ -30,7 +30,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: 3500
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -81,7 +81,7 @@ Material:
     - _DistortionStrength: 0.079
     - _Noise_scale: 21.24
     - _OpacityMultiplier: 1.05
-    - _QueueControl: 0
+    - _QueueControl: 1
     - _QueueOffset: 1
     - _Rotation_speed: 0.13
     - _Twirl: 0

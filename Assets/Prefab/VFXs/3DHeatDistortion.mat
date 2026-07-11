@@ -38,9 +38,8 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _SURFACE_TYPE_TRANSPARENT
-  m_LightmapFlags: 4
+  m_InvalidKeywords: []
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: 3001
@@ -50,6 +49,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_c82ef6a586eb42b49162f84891928543_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 6884dd93822d25b47b4be8ae594e4067, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -86,23 +97,46 @@ Material:
     - _BUILTIN_ZWrite: 0
     - _BUILTIN_ZWriteControl: 2
     - _Blend: 0
+    - _BlendOp: 0
+    - _BumpScale: 1
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
     - _CastShadows: 0
+    - _ColorMode: 0
     - _Cull: 0
+    - _Cutoff: 0.5
     - _Density: 0.9
-    - _DstBlend: 10
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0
+    - _DstBlend: 0
+    - _EmissionEnabled: 0
+    - _FlipbookMode: 0
     - _GlowEnable: 1
-    - _LOD: 1.43
+    - _LOD: 1.61
+    - _LightingEnabled: 0
+    - _Mode: 0
     - _Porosity: 4.87
-    - _QueueControl: 0
+    - _QueueControl: 1
     - _QueueOffset: 1
-    - _SrcBlend: 5
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
+    - _SrcBlend: 1
     - _Strength: -0.21
     - _Surface: 1
     - _ZTest: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     - _ZWriteControl: 2
     m_Colors:
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _CloudColor: {r: 0.6331225, g: 1.1650062, b: 1.7207952, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 6.422234, g: 0, b: 5.1659317, a: 0.9098039}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SurfaceColor: {r: 0, g: 2.139198, b: 3.2111168, a: 0.5921569}
   m_BuildTextureStacks: []

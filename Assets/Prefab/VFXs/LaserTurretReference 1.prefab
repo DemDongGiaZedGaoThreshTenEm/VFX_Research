@@ -44,6 +44,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserTurret(DefaultBeam)
       objectReference: {fileID: 0}
+    - target: {fileID: 3634049530973433602, guid: 6fcf416d6682cf249bdb982d6b34e5d6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634049530973433602, guid: 6fcf416d6682cf249bdb982d6b34e5d6, type: 3}
+      propertyPath: minDistanceBetweenFires
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8261730164867585017, guid: 6fcf416d6682cf249bdb982d6b34e5d6, type: 3}
       propertyPath: m_Enabled
       value: 0
