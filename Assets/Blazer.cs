@@ -9,6 +9,9 @@ public class Blazer : MonoBehaviour
     [Header("Fire Spawn")]
     public string firePoolName = "Fire";
 
+    // Spawn thường nếu không dùng Pool
+    public GameObject firePrefab;
+
     public float minDistanceBetweenFires = 1f;
 
     public LaserTurretAtk LaserTurretAtk;
@@ -56,16 +59,33 @@ public class Blazer : MonoBehaviour
                     Vector3.up,
                     hit.normal);
 
-            ObjectPoolManager.Instance.SpawnFromPool(
-                firePoolName,
-                hit.point,
-                rotation);
+            SpawnFire(hit.point, rotation);
 
             lastSpawnPoint = hit.point;
             hasLastPoint = true;
         }
     }
 
+    private void SpawnFire(Vector3 position, Quaternion rotation)
+    {
+        if (ObjectPoolManager.Instance != null &&
+            ObjectPoolManager.Instance.HasPool(firePoolName))
+        {
+            ObjectPoolManager.Instance.SpawnFromPool(
+                firePoolName,
+                position,
+                rotation);
+        }
+        else
+        {
+            GameObject fire = Instantiate(
+                firePrefab,
+                position,
+                rotation);
+
+            Destroy(fire, 5f); // hoặc cùng thời gian tồn tại của hiệu ứng
+        }
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

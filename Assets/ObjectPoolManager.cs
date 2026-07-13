@@ -23,6 +23,20 @@ public class ObjectPoolManager : MonoBehaviour
     /// </summary>
     private readonly HashSet<IQualityScalable> qualityControllers =
         new HashSet<IQualityScalable>();    
+    
+    [SerializeField]
+    private bool useObjectPooling = true;
+
+    public bool HasPool(string poolName)
+    {
+        if (!useObjectPooling)
+            return false;
+
+        if (string.IsNullOrWhiteSpace(poolName))
+            return false;
+
+        return poolDictionary.ContainsKey(poolName);
+    }    
     private void Awake()
     {
         if (Instance == null)
@@ -34,6 +48,9 @@ public class ObjectPoolManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        if (!useObjectPooling)
+                return;
 
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
@@ -81,14 +98,16 @@ public class ObjectPoolManager : MonoBehaviour
         Vector3 position,
         Quaternion rotation)
     {
-        if (!poolDictionary.ContainsKey(poolName))
+        if (!useObjectPooling)
+        return null;
+        
+        if (!poolDictionary.TryGetValue(poolName, out Queue<GameObject> pool))
         {
             Debug.LogWarning($"Pool {poolName} không tồn tại!");
             return null;
         }
 
-        GameObject objectToSpawn =
-            poolDictionary[poolName].Dequeue();
+        GameObject objectToSpawn = pool.Dequeue();
 
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
@@ -96,12 +115,10 @@ public class ObjectPoolManager : MonoBehaviour
         objectToSpawn.SetActive(false);
         objectToSpawn.SetActive(true);
 
-        poolDictionary[poolName].Enqueue(objectToSpawn);
+        pool.Enqueue(objectToSpawn);
 
         return objectToSpawn;
     }
-
-
     /// Áp dụng Quality cho toàn bộ Effect trong Pool.
     /// Được QualityManager gọi.
     /// </summary>
