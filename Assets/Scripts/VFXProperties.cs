@@ -25,4 +25,9 @@ public class VFXProperties
 
     [HideInInspector]
     public int highIntValue;
+
+    [HideInInspector]
+    public bool highBoolValue = true;
+    public bool mediumBoolValue = true;
+    public bool lowBoolValue = false;
 }

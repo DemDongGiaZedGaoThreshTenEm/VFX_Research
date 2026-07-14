@@ -61,7 +61,7 @@ public class EffectQualityController : MonoBehaviour, IQualityScalable
             var main = ps.main;
             var emission = ps.emission;
 
-            particleList.Add(new ParticleData
+            ParticleData data = new ParticleData
             {
                 particleSystem = ps,
                 emission = emission.rateOverTime.constant,
@@ -69,7 +69,9 @@ public class EffectQualityController : MonoBehaviour, IQualityScalable
                 startSpeed = main.startSpeed.constant,
                 simulationSpeed = main.simulationSpeed,
                 maxParticles = main.maxParticles
-            });
+            };
+
+            particleList.Add(data);
         }
     }
 
@@ -135,6 +137,8 @@ public class EffectQualityController : MonoBehaviour, IQualityScalable
 
             emission.rateOverTime =
                 data.emission * scale;
+
+            LogParticleState(data.particleSystem, scale);
         }
 
         //----------------------------------
@@ -146,7 +150,7 @@ public class EffectQualityController : MonoBehaviour, IQualityScalable
             if (binder == null)
                 continue;
 
-            binder.Apply(scale);
+            binder.Apply(level, scale);       
         }
     }
 
@@ -163,5 +167,23 @@ public class EffectQualityController : MonoBehaviour, IQualityScalable
             default:
                 return 1f;
         }
+    }
+
+    private void LogParticleState(ParticleSystem ps,float scale)
+    {
+        if (ps == null)
+        return;
+        
+        var main = ps.main;
+        var emission = ps.emission;
+
+        Debug.Log(
+            $"[{ps.name}] " +
+            $"Scale={scale:F2} " +
+            $"Emission={emission.rateOverTime.constant:F1} " +
+            $"Lifetime={main.startLifetime.constant:F2} " +
+            $"Speed={main.startSpeed.constant:F2} " +
+            $"Simulation={main.simulationSpeed:F2} " +
+            $"Max={main.maxParticles}");
     }
 }

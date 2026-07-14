@@ -90,13 +90,22 @@ public class VFXPropertyBinder : MonoBehaviour
                     }
 
                     break;
+
+                case PropertyType.Bool:
+                if (visualEffect.HasBool(property.propertyName))
+                {
+                    property.highBoolValue =
+                        visualEffect.GetBool(property.propertyName);
+                }
+
+                break;
             }
         }
     }
     /// <summary>
     /// Áp dụng Quality Scale.
     /// </summary>
-    public void Apply(float scale)
+    public void Apply(QualityLevel level, float scale)
     {
         if (visualEffect == null)
             return;
@@ -146,6 +155,21 @@ public class VFXPropertyBinder : MonoBehaviour
                         }                    
                     }
                     break;
+
+                case PropertyType.Bool:
+                    if (visualEffect.HasBool(property.propertyName))
+                    {
+                        bool value =
+                            level == QualityLevel.Low
+                            ? false
+                            : property.highBoolValue;
+
+                        visualEffect.SetBool(
+                            property.propertyName,
+                            value);
+                    }
+
+                break;
             }
         }
     }

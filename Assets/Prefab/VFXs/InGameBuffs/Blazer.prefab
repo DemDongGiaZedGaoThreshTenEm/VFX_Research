@@ -296,6 +296,9 @@ VisualEffect:
       - m_Value: 0
         m_Name: HasDuration
         m_Overridden: 1
+      - m_Value: 1
+        m_Name: HeatDistortionEnable
+        m_Overridden: 1
 --- !u!73398921 &7206304425667794233
 VFXRenderer:
   serializedVersion: 1
@@ -393,11 +396,25 @@ MonoBehaviour:
     enableScaling: 1
     highFloatValue: 0
     highIntValue: 0
+    highBoolValue: 1
+    mediumBoolValue: 1
+    lowBoolValue: 0
   - propertyName: BurstSpawnRate
     propertyType: 0
     enableScaling: 1
     highFloatValue: 0
     highIntValue: 0
+    highBoolValue: 1
+    mediumBoolValue: 1
+    lowBoolValue: 0
+  - propertyName: HeatDistortionEnable
+    propertyType: 2
+    enableScaling: 1
+    highFloatValue: 0
+    highIntValue: 0
+    highBoolValue: 1
+    mediumBoolValue: 1
+    lowBoolValue: 0
 --- !u!1 &7935441492398842590
 GameObject:
   m_ObjectHideFlags: 0
