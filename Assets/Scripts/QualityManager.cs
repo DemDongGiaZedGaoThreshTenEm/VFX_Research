@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// Quản lý chất lượng VFX dựa trên FPS trung bình.

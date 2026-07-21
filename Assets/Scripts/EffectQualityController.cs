@@ -33,6 +33,7 @@ public class EffectQualityController : MonoBehaviour, IQualityScalable
 
     [Range(0.1f, 1f)]
     [SerializeField] private float mediumScale = 0.7f;
+    [SerializeField] private bool debugLog = false;
 
     private readonly List<ParticleData> particleList = new();
 
@@ -171,6 +172,8 @@ public class EffectQualityController : MonoBehaviour, IQualityScalable
 
     private void LogParticleState(ParticleSystem ps,float scale)
     {
+        if (!debugLog)
+        return;
         if (ps == null)
         return;
         

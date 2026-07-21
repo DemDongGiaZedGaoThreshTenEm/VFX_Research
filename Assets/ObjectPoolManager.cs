@@ -12,6 +12,7 @@ public class ObjectPoolManager : MonoBehaviour
         public string poolName;
         public GameObject prefab;
         public int size;
+        public bool ApplyQuality;
     }
 
     [SerializeField] private List<Pool> pools;
@@ -64,8 +65,6 @@ public class ObjectPoolManager : MonoBehaviour
 
                 obj.SetActive(false);
 
-                objectPool.Enqueue(obj);
-
                 bool hasParticle =
                     obj.GetComponentInChildren<ParticleSystem>(true) != null;
 
@@ -83,8 +82,13 @@ public class ObjectPoolManager : MonoBehaviour
                         controller.Initialize();
                     }
 
-                    qualityControllers.Add(controller);
+                    if (pool.ApplyQuality)
+                    {
+                        qualityControllers.Add(controller);
+                    }
                 }
+
+                objectPool.Enqueue(obj);
             }
 
             poolDictionary.Add(pool.poolName, objectPool);
@@ -137,5 +141,56 @@ public class ObjectPoolManager : MonoBehaviour
 
         Debug.Log(
             $"[ObjectPoolManager] Applied {level} quality to {updated} controllers.");
+    }
+
+    private void OnValidate()
+    {
+        if (!Application.isPlaying)
+            return;
+
+        if (!useObjectPooling || poolDictionary == null)
+            return;
+
+        foreach (Pool pool in pools)
+        {
+            UpdatePoolQuality(pool);
+        }
+    }
+
+    private void UpdatePoolQuality(Pool pool)
+    {
+        if (!poolDictionary.TryGetValue(pool.poolName, out Queue<GameObject> objectPool))
+            return;
+
+        foreach (GameObject obj in objectPool)
+        {
+            if (obj == null)
+                continue;
+
+            EffectQualityController controller =
+                obj.GetComponent<EffectQualityController>();
+
+            if (controller == null)
+                continue;
+
+            if (pool.ApplyQuality)
+            {
+                qualityControllers.Add(controller);
+
+                // Đồng bộ ngay quality hiện tại
+                if (QualityManager.Instance != null)
+                {
+                    controller.ApplyQuality(
+                        QualityManager.Instance.CurrentQuality);
+                }
+            }
+            else
+            {
+                qualityControllers.Remove(controller);
+
+                // Trả về mặc định (High)
+                controller.ApplyQuality(QualityLevel.High);
+            }
+        }
     }
 }
